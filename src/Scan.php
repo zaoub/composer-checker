@@ -21,13 +21,15 @@ class Scan
         $result = $checker->check($this->config['composer_lock_path'], 'json');
         $alerts = json_decode((string) $result, true);
         
+        if (!count($alerts)) {
+            echo "\e[0;32mYou are in safe mode\e[0m".PHP_EOL;
+        }
+
         echo "\e[0;31mNumber of vulnerability packets: ".count($alerts)."\e[0m".PHP_EOL;
         echo '------------------------------------------------------------'.PHP_EOL;
-        if (count($alerts)) {
-            $this->show->data($alerts);
-            $this->show->run();
+        $this->show->data($alerts);
+        $this->show->run();
 
-            $this->send->run();
-        }
+        $this->send->run();
     }
 }
