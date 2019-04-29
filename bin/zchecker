@@ -1,7 +1,5 @@
 <?php
 
-use Zaoub\ComposerChecker\Scan\Scan;
-
 $autoload_files = [
     __DIR__.'/../../autoload.php',
     __DIR__.'/../vendor/autoload.php',
@@ -19,6 +17,6 @@ unset($file);
 
 require COMPOSER_INSTALL;
 
-$scan = new Scan();
+$scan = new \Zaoub\ComposerChecker\Scan();
 
-echo $scan->run();
+$scan->run();
