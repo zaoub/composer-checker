@@ -1,7 +1,0 @@
-<?php
-
-use Zaoub\ComposerChecker\Scan\Scan;
-
-$scan = new Scan();
-
-echo $scan->run();

@@ -1,0 +1,24 @@
+<?php
+
+use Zaoub\ComposerChecker\Scan\Scan;
+
+$autoload_files = [
+    __DIR__.'/../../autoload.php',
+    __DIR__.'/../vendor/autoload.php',
+    __DIR__.'/vendor/autoload.php'
+];
+
+foreach (array($autoload_files) as $file) {	
+    if (file_exists($file)) {	
+        define('COMPOSER_INSTALL', $file);	
+        break;	
+    }	
+}	
+
+unset($file);
+
+require COMPOSER_INSTALL;
+
+$scan = new Scan();
+
+echo $scan->run();
