@@ -13,6 +13,11 @@ class Scan
         $this->show = new ShowData;
     }
 
+    /**
+     * Run the scan
+     * 
+     * @return string
+     */
     public function run()
     {
         echo "\e[1;33mChecking... \e[0m".PHP_EOL;
@@ -29,7 +34,6 @@ class Scan
         echo '------------------------------------------------------------'.PHP_EOL;
         $this->show->data($alerts);
         $this->show->run();
-
         $this->send->run();
     }
 }

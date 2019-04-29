@@ -4,6 +4,11 @@ namespace Zaoub\ComposerChecker;
 
 class SendResults
 {
+    /**
+     * Turn on sending data to our app
+     * 
+     * @return string
+     */
     public function run()
     {
         echo "\e[1;33mYou want sent this result to zaoub app? (Y\N): \e[0m";

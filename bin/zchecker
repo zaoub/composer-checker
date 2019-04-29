@@ -1,5 +1,6 @@
 <?php
 
+// Expected file list
 $autoload_files = [
     __DIR__.'/../../../autoload.php',
     __DIR__.'/../../autoload.php',
@@ -7,7 +8,8 @@ $autoload_files = [
     __DIR__.'/vendor/autoload.php'
 ];
 
-foreach (array($autoload_files) as $file) {	
+// Choose the file autoload
+foreach ($autoload_files as $file) {	
     if (file_exists($file)) {	
         define('COMPOSER_INSTALL', $file);	
         break;	
@@ -16,8 +18,11 @@ foreach (array($autoload_files) as $file) {
 
 unset($file);
 
+// require the file autoload
 require COMPOSER_INSTALL;
 
+// Create an object from `Scan` class
 $scan = new \Zaoub\ComposerChecker\Scan();
 
+// Run the scanner
 $scan->run();

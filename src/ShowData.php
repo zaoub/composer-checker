@@ -4,10 +4,22 @@ namespace Zaoub\ComposerChecker;
 
 class ShowData
 {
+    /**
+     * Receiving data from outside this class
+     * 
+     * @param array $data
+     * 
+     * @return string
+     */
     public function data($data) {
         $this->data = $data;
     }
 
+    /**
+     * Turn on data display
+     * 
+     * @return string
+     */
     public function run()
     {
         foreach ($this->data as $i) {
