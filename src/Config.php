@@ -2,13 +2,13 @@
 
 namespace Zaoub\ComposerChecker;
 
-class Config implements ArrayAccess
+class Config implements \ArrayAccess
 {
     private $container = [];
 
     public function __construct() {
         $this->container = [
-            "composer_lock_path" => __DIR__
+            'composer_lock_path' => __DIR__.'/../../../../composer.lock'
         ];
     }
 
