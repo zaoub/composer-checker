@@ -28,6 +28,7 @@ class Scan
         
         if (!count($alerts)) {
             echo "\e[0;32mYou are in safe mode\e[0m".PHP_EOL;
+            exit;
         }
 
         echo "\e[0;31mNumber of vulnerability packets: ".count($alerts)."\e[0m".PHP_EOL;
