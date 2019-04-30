@@ -1,5 +1,6 @@
 {
     "name": "zaoub/composer-checker",
+    "description": "Check the integrity of the packages and if they are in weaknesses they can be sent to the zaoub application as an executable task.",
     "type": "library",
     "license": "MIT",
     "authors": [
