@@ -9,9 +9,15 @@ class SendResults
      * 
      * @return string
      */
-    public function run()
+    public function run($config)
     {
-        echo "\e[1;33mYou want sent this result to zaoub app? (Y\N): \e[0m";
+
+        if ($config['send'] == 'yes') {
+            // send data to zaoub
+            exit;
+        }
+
+        echo PHP_EOL."\e[1;33mYou want sent this result to zaoub app? (Y\N): \e[0m";
 
         $answer = trim(fgets(STDIN));
         $answer = strtoupper($answer);
@@ -22,6 +28,7 @@ class SendResults
         }
 
         echo "\e[1;33mSending results... \e[0m".PHP_EOL;
+        // send data to zaoub
         echo "\e[1;31mThis feature is currently inactive.\e[0m";
     }
 }

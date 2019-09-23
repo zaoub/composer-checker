@@ -20,8 +20,29 @@ class ShowData
      * 
      * @return string
      */
-    public function run()
+    public function run($config)
     {
+        if ($config['type_results'] == 'json') {
+            $out_json = [];
+            foreach ($this->data as $i) {
+                $out_json []= [
+                    'title' => $i['advisories'][0]['title'],
+                    'version' => $i['version'],
+                    'cve_id' => $i['advisories'][0]['cve'],
+                ];
+            }
+            echo json_encode($out_json);
+            return false;
+        }
+
+        if (!count($this->data)) {
+            echo "\e[0;32mYou are in safe mode\e[0m".PHP_EOL;
+            exit;
+        }
+
+        echo "\e[0;31mNumber of vulnerability packets: ".count($this->data)."\e[0m".PHP_EOL;
+        echo '------------------------------------------------------------'.PHP_EOL;
+
         foreach ($this->data as $i) {
             echo 'Title: '.$i['advisories'][0]['title'].PHP_EOL;
             echo 'Version: '.$i['version'].PHP_EOL;

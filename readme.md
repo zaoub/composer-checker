@@ -1,7 +1,20 @@
 # zaoub/composer-checker
 Check the integrity of the packages and if they are in weaknesses they can be sent to the zaoub application as an executable task.
 
-### Check of packages
+## Install via composer
+```bash
+$ composer require zaoub/composer-checker
+```
+
+## Auto Check of packages
+```bash
+.\vendor\bin\zchecker --type="text" --secret_key="<secret_key>" --send="yes"
+```
+- type: You can choose between two types of results display. which(text | json).
+- secret_key: If you are going to send automatically, you must specify the secret key.
+- send: Confirm sending results (yes | no).
+
+## Check of packages
 ```bash
 .\vendor\bin\zchecker
 ```

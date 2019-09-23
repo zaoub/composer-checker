@@ -7,8 +7,8 @@ use SensioLabs\Security\SecurityChecker;
 
 class Scan
 {
-    public function __construct() {
-        $this->config = new Config;
+    public function __construct($options = []) {
+        $this->config = new Config($options);
         $this->send = new SendResults;
         $this->show = new ShowData;
     }
@@ -20,21 +20,16 @@ class Scan
      */
     public function run()
     {
-        echo "\e[1;33mChecking... \e[0m".PHP_EOL;
+        if ($this->config['type_results'] == 'text') {
+            echo "\e[1;33mChecking... \e[0m".PHP_EOL;
+        }
 
         $checker = new SecurityChecker();
         $result = $checker->check($this->config['composer_lock_path'], 'json');
         $alerts = json_decode((string) $result, true);
         
-        if (!count($alerts)) {
-            echo "\e[0;32mYou are in safe mode\e[0m".PHP_EOL;
-            exit;
-        }
-
-        echo "\e[0;31mNumber of vulnerability packets: ".count($alerts)."\e[0m".PHP_EOL;
-        echo '------------------------------------------------------------'.PHP_EOL;
         $this->show->data($alerts);
-        $this->show->run();
-        $this->send->run();
+        $this->show->run($this->config);
+        $this->send->run($this->config);
     }
 }
