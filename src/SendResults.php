@@ -1,6 +1,6 @@
 <?php
 
-namespace Zaoub\ComposerChecker;
+namespace Zaoub\Dependo;
 
 class SendResults
 {

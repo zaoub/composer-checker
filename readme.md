@@ -1,14 +1,14 @@
-# zaoub/composer-checker
+# zaoub/dependo-php-client
 Check the integrity of the packages and if they are in weaknesses they can be sent to the zaoub application as an executable task.
 
 ## Install via composer
 ```bash
-$ composer require zaoub/composer-checker
+$ composer require zaoub/dependo-php-client
 ```
 
 ## Auto Check of packages
 ```bash
-.\vendor\bin\zchecker --type="text" --secret_key="<secret_key>" --send="yes"
+.\vendor\bin\zaoubdependo --type="text" --secret_key="<secret_key>" --send="yes"
 ```
 - type: You can choose between two types of results display. which(text | json).
 - secret_key: If you are going to send automatically, you must specify the secret key.
@@ -16,7 +16,7 @@ $ composer require zaoub/composer-checker
 
 ## Check of packages
 ```bash
-.\vendor\bin\zchecker
+.\vendor\bin\zaoubdependo
 ```
 
 Example of results:-

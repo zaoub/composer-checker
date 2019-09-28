@@ -1,8 +1,8 @@
 <?php
 
-namespace Zaoub\ComposerChecker;
+namespace Zaoub\Dependo;
 
-use Zaoub\ComposerChecker\{Config, SendResults, ShowData};
+use Zaoub\Dependo\{Config, SendResults, ShowData};
 use SensioLabs\Security\SecurityChecker;
 
 class Scan

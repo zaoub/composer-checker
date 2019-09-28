@@ -1,5 +1,5 @@
 {
-    "name": "zaoub/composer-checker",
+    "name": "zaoub/dependo-php-client",
     "description": "Check the integrity of the packages and if they are in weaknesses they can be sent to the zaoub application as an executable task.",
     "type": "library",
     "license": "MIT",
@@ -14,8 +14,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Zaoub\\ComposerChecker\\": "src/"
+            "Zaoub\\Dependo\\": "src/"
         }
     },
-    "bin": ["bin/zchecker"]
+    "bin": ["bin/zaoubdependo"]
 }
