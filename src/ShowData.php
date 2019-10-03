@@ -24,11 +24,11 @@ class ShowData
     {
         if ($config['type_results'] == 'json') {
             $out_json = [];
-            foreach ($this->data as $i) {
+            foreach ($this->data as $vendor => $i) {
                 $out_json []= [
-                    'title' => $i['advisories'][0]['title'],
+					'vendor' => $vendor,
                     'version' => $i['version'],
-                    'cve_id' => $i['advisories'][0]['cve'],
+                    'advisories' => $this->advisories_filter($i['advisories']),
                 ];
             }
             echo json_encode($out_json);
@@ -42,12 +42,30 @@ class ShowData
 
         echo "\e[0;31mNumber of vulnerability packets: ".count($this->data)."\e[0m".PHP_EOL;
         echo '------------------------------------------------------------'.PHP_EOL;
-
-        foreach ($this->data as $i) {
-            echo 'Title: '.$i['advisories'][0]['title'].PHP_EOL;
+        foreach ($this->data as $vendor => $i) {
+			echo 'Vendor: '.$vendor.PHP_EOL;
             echo 'Version: '.$i['version'].PHP_EOL;
-            echo 'Cve ID: '.$i['advisories'][0]['cve'].PHP_EOL;
+            echo 'Advisories:-'.PHP_EOL;
+			foreach ($i['advisories'] as $advisorie) {
+				echo '    Title: '.$advisorie['title'].PHP_EOL;
+				echo '    Cve: '.$advisorie['cve'].PHP_EOL;
+				if (end($i['advisories']) != $advisorie) {
+					echo '    ----'.PHP_EOL;
+				}
+			}
             echo '------------------------------------------------------------'.PHP_EOL;
         }
     }
+	
+	public function advisories_filter($advisories)
+	{
+		$out_data = [];
+		foreach ($advisories as $advisorie) {
+			$out_data []= [
+				'title' => $advisorie['title'],
+				'cve' => $advisorie['cve']
+			];
+		}
+		return $out_data;
+	}
 }
