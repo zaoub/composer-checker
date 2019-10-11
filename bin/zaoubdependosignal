@@ -22,18 +22,8 @@ unset($file);
 // require the file autoload
 require COMPOSER_INSTALL;
 
-$shortopts = "v::"; // Optional value
-$shortopts .= "v::"; // Optional value
-$shortopts .= "v::"; // Optional value
-$longopts  = array(
-    "type::",    // Optional value
-    "secret_key::",    // Optional value
-    "send::",    // Optional value
-);
-$options = getopt($shortopts, $longopts);
-
 // Create an object from `Scan` class
-$scan = new \Zaoub\Dependo\Scan($options);
+$scan = new \Zaoub\Dependo\Signal();
 
 // Run the scanner
 echo $scan->run();
