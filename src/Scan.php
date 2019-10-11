@@ -22,15 +22,13 @@ class Scan
      */
     public function run()
     {
-        if ($this->config['type_results'] == 'text') {
-            echo "\e[1;33mChecking... \e[0m".PHP_EOL;
-        }
+        echo "\e[1;33mChecking... \e[0m".PHP_EOL;
 
         $checker = new SecurityChecker();
         $result = $checker->check($this->config['composer_lock_path'], 'json');
         $alerts = json_decode((string) $result, true);
         
         $this->report->setData($alerts);
-        echo $this->report->run($this->config['type_results']);
+        echo $this->report->run('text');
     }
 }

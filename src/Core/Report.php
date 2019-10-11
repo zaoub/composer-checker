@@ -21,7 +21,7 @@ class Report
     public function run($type)
     {
         if ($type == 'json') {
-            $data = $this->format->json();
+            return $this->format->json();
         }
 
         if (!count($this->config['data'])) {
