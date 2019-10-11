@@ -14,6 +14,8 @@ class Config implements \ArrayAccess
         $this->container['type_results'] = (!isset($options['type'])) ? 'text' : $options['type'];
         $this->container['secret_key'] = (isset($options['secret_key'])) ? $options['secret_key'] : '';
         $this->container['send'] = (isset($options['send'])) ? $options['send'] : '';
+
+        $this->container['base_uri'] = 'https://postb.in/';
     }
 
     public function offsetSet($offset, $value) {

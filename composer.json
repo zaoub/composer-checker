@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "sensiolabs/security-checker": "5.0.*"
+        "sensiolabs/security-checker": "5.0.*",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "autoload": {
         "psr-4": {

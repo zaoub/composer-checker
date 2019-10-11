@@ -4,7 +4,7 @@ namespace Zaoub\Dependo;
 
 use Zaoub\Dependo\Config;
 use Zaoub\Dependo\Core\Report;
-use Zaoub\Dependo\SendResults;
+use Zaoub\Dependo\Core\SendResults;
 
 use SensioLabs\Security\SecurityChecker;
 
@@ -12,7 +12,6 @@ class Scan
 {
     public function __construct($options = []) {
         $this->config = new Config($options);
-        $this->send = new SendResults;
         $this->report = new Report($this->config);
     }
 
@@ -33,7 +32,5 @@ class Scan
         
         $this->report->setData($alerts);
         echo $this->report->run($this->config['type_results']);
-
-        $this->send->run($this->config);
     }
 }

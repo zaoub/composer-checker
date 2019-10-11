@@ -1,19 +1,21 @@
 <?php
 
-namespace Zaoub\Dependo;
+namespace Zaoub\Dependo\Core;
+use Zaoub\Dependo\lib\PingData;
 
 class SendResults
 {
-    /**
-     * Turn on sending data to our app
-     * 
-     * @return string
-     */
-    public function run($config)
+    public function __construct($config = []) {
+        $this->config = $config;
+        $this->PingData = new PingData($config);
+    }
+
+    public function run()
     {
 
-        if ($config['send'] == 'yes') {
+        if ($this->config['send'] == 'yes') {
             // send data to zaoub
+            $this->PingData->run();
             exit;
         }
 
@@ -28,7 +30,10 @@ class SendResults
         }
 
         echo "\e[1;33mSending results... \e[0m".PHP_EOL;
+
         // send data to zaoub
-        echo "\e[1;31mThis feature is currently inactive.\e[0m";
+        $this->PingData->run();
+        
+        // echo "\e[1;31mThis feature is currently inactive.\e[0m";
     }
 }

@@ -7,7 +7,8 @@ use Zaoub\Dependo\lib\Format;
 class Report
 {
     public function __construct($config = []) {
-        $this->config = $config;        
+        $this->config = $config;
+        $this->send = new SendResults($this->config);
     }
 
     public function setData($data)
@@ -20,13 +21,20 @@ class Report
     public function run($type)
     {
         if ($type == 'json') {
-            return $this->format->json();
+            $data = $this->format->json();
         }
 
         if (!count($this->config['data'])) {
             die(PHP_EOL."\e[0;32m>> You are in safe mode\e[0m".PHP_EOL);
         }
 
-        return $this->format->text();
+        $data = $this->format->text();
+
+        echo $data;
+
+        if (!empty($data)) {
+            $this->config['data'] = $this->format->json();
+            $this->send->run($this->config);
+        }
     }
 }
