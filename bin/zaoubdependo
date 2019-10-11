@@ -22,10 +22,10 @@ unset($file);
 // require the file autoload
 require COMPOSER_INSTALL;
 
-$shortopts .= "v::"; // Optional value
+$shortopts = "v::"; // Optional value
 $shortopts .= "v::"; // Optional value
 $longopts  = array(
-    "secret_key::",    // Optional value
+    "keys::",    // Optional value
     "send::",    // Optional value
 );
 $options = getopt($shortopts, $longopts);
