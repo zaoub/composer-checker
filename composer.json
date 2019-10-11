@@ -17,5 +17,8 @@
             "Zaoub\\Dependo\\": "src/"
         }
     },
-    "bin": ["bin/zaoubdependo"]
+    "bin": [
+        "bin/zaoubdependo",
+        "bin/zaoubdependosignal"
+    ]
 }

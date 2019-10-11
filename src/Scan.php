@@ -2,6 +2,7 @@
 
 namespace Zaoub\Dependo;
 
+use Zaoub\Dependo\Core\Report;
 use Zaoub\Dependo\{Config, SendResults, ShowData};
 use SensioLabs\Security\SecurityChecker;
 
@@ -10,7 +11,7 @@ class Scan
     public function __construct($options = []) {
         $this->config = new Config($options);
         $this->send = new SendResults;
-        $this->show = new ShowData;
+        $this->report = new Report($this->config);
     }
 
     /**
@@ -28,8 +29,9 @@ class Scan
         $result = $checker->check($this->config['composer_lock_path'], 'json');
         $alerts = json_decode((string) $result, true);
         
-        $this->show->data($alerts);
-        $this->show->run($this->config);
+        $this->report->setData($alerts);
+        echo $this->report->run($this->config['type_results']);
+
         $this->send->run($this->config);
     }
 }
