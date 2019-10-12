@@ -6,9 +6,12 @@ class Config implements \ArrayAccess
 {
     private $container = [];
 
-    public function __construct($options) {
+    public function __construct($options, $clientConfig = []) {
+        
         $this->container = [
-            'composer_lock_path' => __DIR__.'/../../../../composer.lock'
+            'composer_lock_path' => __DIR__.'/../../../../composer.lock',
+            'send' => (isset($options['send'])) ? $options['send'] : '',
+            'base_uri' => 'https://postb.in/'
         ];
 
         $keys = (isset($options['keys'])) ? $options['keys'] : false;
@@ -17,9 +20,7 @@ class Config implements \ArrayAccess
             $this->setkeys($keys);
         }
 
-        $this->container['send'] = (isset($options['send'])) ? $options['send'] : '';
-
-        $this->container['base_uri'] = 'https://postb.in/';
+        $this->container = array_replace_recursive($this->container, $clientConfig);
     }
 
     public function offsetSet($offset, $value) {
@@ -45,7 +46,7 @@ class Config implements \ArrayAccess
     public function setKeys($keys)
     {
         if (!preg_match("/([A-Za-z0-9]*):([A-Za-z0-9]*):([A-Za-z0-9]*)/", $keys)) {
-            die(\Zaoub\Dependo\Core\Console::log('The key structure is incorrect', 'green'));
+            die(\Zaoub\Dependo\Core\Console::log('The key structure is incorrect'.PHP_EOL.'The structure should be: <project_key>:<project_secret>:<secret_key>', 'green'));
         }
 
         $keys = explode(':', $keys);
