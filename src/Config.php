@@ -11,7 +11,7 @@ class Config implements \ArrayAccess
         $this->container = [
             'composer_lock_path' => __DIR__.'/../../../../composer.lock',
             'send' => (isset($options['send'])) ? $options['send'] : '',
-            'base_uri' => 'https://postb.in/'
+            'base_uri' => 'http://security.zaoub.test/'
         ];
 
         $keys = (isset($options['keys'])) ? $options['keys'] : false;
@@ -46,7 +46,7 @@ class Config implements \ArrayAccess
     public function setKeys($keys)
     {
         if (!preg_match("/([A-Za-z0-9]*):([A-Za-z0-9]*):([A-Za-z0-9]*)/", $keys)) {
-            die(\Zaoub\Dependo\Core\Console::log('The key structure is incorrect'.PHP_EOL.'The structure should be: <project_key>:<project_secret>:<secret_key>', 'green'));
+            die(\Zaoub\Dependo\Core\Console::log('The key structure is incorrect'.PHP_EOL.'The structure should be: <project_key>:<project_secret>:<secret_key>', 'red'));
         }
 
         $keys = explode(':', $keys);

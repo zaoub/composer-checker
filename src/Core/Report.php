@@ -25,7 +25,7 @@ class Report
         }
 
         if (!count($this->config['data'])) {
-            die(PHP_EOL."\e[0;32m>> You are in safe mode\e[0m".PHP_EOL);
+            die(\Zaoub\Dependo\Core\Console::log('>> You are in safe mode', 'green'));
         }
 
         $data = $this->format->text();

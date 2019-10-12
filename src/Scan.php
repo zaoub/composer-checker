@@ -22,7 +22,7 @@ class Scan
      */
     public function run()
     {
-        echo "\e[1;33mChecking... \e[0m".PHP_EOL;
+        \Zaoub\Dependo\Core\Console::log('>> Checking...', 'green');
 
         $checker = new SecurityChecker();
         $result = $checker->check($this->config['composer_lock_path'], 'json');
