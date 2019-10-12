@@ -8,26 +8,60 @@ $ composer require zaoub/dependo-php-client
 
 ## Auto Check of packages
 ```bash
-.\vendor\bin\zaoubdependo --type="text" --secret_key="<secret_key>" --send="yes"
+vendor/bin/zaoubdependo --keys="<secret_key>" --send="yes"
 ```
-- type: You can choose between two types of results display. which(text | json).
-- secret_key: If you are going to send automatically, you must specify the secret key.
+- keys: If you are going to send automatically, you must specify the secret key.
 - send: Confirm sending results (yes | no).
 
 ## Check of packages
 ```bash
-.\vendor\bin\zaoubdependo
+vendor/bin/zaoubdependo
 ```
 
 Example of results:-
 ```
+███████╗ █████╗  ██████╗ ██╗   ██╗██████╗     ███████╗███████╗ ██████╗██╗   ██╗██████╗ ██╗████████╗██╗   ██╗
+╚══███╔╝██╔══██╗██╔═══██╗██║   ██║██╔══██╗    ██╔════╝██╔════╝██╔════╝██║   ██║██╔══██╗██║╚══██╔══╝╚██╗ ██╔╝
+  ███╔╝ ███████║██║   ██║██║   ██║██████╔╝    ███████╗█████╗  ██║     ██║   ██║██████╔╝██║   ██║    ╚████╔╝
+ ███╔╝  ██╔══██║██║   ██║██║   ██║██╔══██╗    ╚════██║██╔══╝  ██║     ██║   ██║██╔══██╗██║   ██║     ╚██╔╝
+███████╗██║  ██║╚██████╔╝╚██████╔╝██████╔╝    ███████║███████╗╚██████╗╚██████╔╝██║  ██║██║   ██║      ██║
+╚══════╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═════╝     ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝   ╚═╝      ╚═╝
+- Dependo tool: Check the integrity of the packages.
+------------------------------------------------------------------------------------------------------------
 Checking...
-Number of vulnerability packets: 1
+Number of vulnerability packets: 3
 ------------------------------------------------------------
-Title: CVE-2019-10913: Reject invalid HTTP method overrides
-Version: v4.2.4
-Cve ID: CVE-2019-10913
+Vendor: laravel/framework
+Version: v5.1.12
+Advisories:-
+    Title: Exploit of encryption failure vulnerability
+    Cve:
+    ----
+    Title: Cookie serialization vulnerability
+    Cve:
+    ----
+    Title: Timing attack vector for remember me token
+    Cve: CVE-2017-14775
 ------------------------------------------------------------
+Vendor: swiftmailer/swiftmailer
+Version: v5.4.1
+Advisories:-
+    Title: Remote Code Execution when using the mail transport
+    Cve: CVE-2016-10074
+------------------------------------------------------------
+Vendor: symfony/http-foundation
+Version: v2.7.3
+Advisories:-
+    Title: CVE-2018-11386: Denial of service when using PDOSessionHandler
+    Cve: CVE-2018-11386
+    ----
+    Title: CVE-2018-14773: Remove support for legacy and risky HTTP headers
+    Cve: CVE-2018-14773
+    ----
+    Title: CVE-2019-10913: Reject invalid HTTP method overrides
+    Cve: CVE-2019-10913
+------------------------------------------------------------
+
 You want sent this result to zaoub app? (Y\N):
 ```
 
